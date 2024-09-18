@@ -1,0 +1,27 @@
+1] Two tier flask app in ECS
+and communicate each other using ecs service connect.
+
+
+process:-
+
+1] create cluster
+while creating let namespace to be created for that cluster.
+with farget
+2] Created two task df flask-db and flaks-app
+simple creation only.
+in flask-app td creation in container add env variable MYSQL_HOST its value DNS (mysql_container.namespace)of flask-db service or task.
+in db td use tcp protocol only, and app protocol None.
+3] Create Service
+in service connect select Turn on Service Connect option with Client and server (both side communication)
+flask-app-svc:- dicovery name and for DNS : flask-app-svc.demo-cluster and port 5000 now service will get created. " <service-name>.<namepsace>"
+once task created go to task networking and select sg provide inbounf port :- 5000 
+same inbound for 3306
+
+4] Now create another service with same as above details with name as mysql_container and provide dns name (mysql_container.namespace).
+
+Now we should be able to get flaks app to communicate with mysql db.
+
+
+_____________________________
+
+Now do same with terraform
