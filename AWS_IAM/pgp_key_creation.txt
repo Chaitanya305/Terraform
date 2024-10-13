@@ -1,0 +1,20 @@
+sudo apt-get install gnupg
+gpg --full-generate-key
+Now after this provide user_name description and email_id
+gpg --list-keys   :- to list the pgp key created for the users
+gpg --export 31D613916E99749214FB3D2506059CED0841A43A | base64 > publicbase64.key  :-to create pgp public key
+gpg --export-secret-key -a 31D613916E99749214FB3D2506059CED0841A43A > private.key   :- to create pgp private key
+
+
+before this if getting erro do follwing steps:
+
+To solve the problem, Please enable loopback pinentry mode.  Add below lines to ~/.gnupg/gpg.conf:
+use-agent 
+pinentry-mode loopback
+
+And add this to ~/.gnupg/gpg-agent.conf, creating the file if it doesn't already exist:
+allow-loopback-pinentry
+
+Now once secret is created decrypt its with help of below command
+cat secret_key.txt | base64 --decode | gpg --decrypt                       :- first save output in secret_key.txt then decrypt it. use password provide to decrypt it.
+

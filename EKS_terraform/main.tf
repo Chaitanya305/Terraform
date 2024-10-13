@@ -40,6 +40,7 @@ module "eks" {
   cluster_name = "demo-eks-cluster"
   public_sub_1 = module.vpc.public_sub_1
   private_sub_1 = module.vpc.private_sub_1
+  private_sub_2 = module.vpc.private_sub_2
   public_sub_2 = module.vpc.public_sub_2
   instance_types_for_worker_nodes = "t3.medium"
   key_path = "C:/Users/Shree/Desktop/Terraform/EKS_terraform/EKS/EKS-KEY-PAIR.pub"

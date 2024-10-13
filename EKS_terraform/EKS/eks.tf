@@ -86,7 +86,7 @@ resource "aws_eks_cluster" "eks-cluster" {
   name = var.cluster_name
   role_arn = aws_iam_role.eks_acces_role.arn
   vpc_config {
-    subnet_ids = [var.public_sub_1, var.private_sub_1, var.public_sub_2]
+    subnet_ids = [var.public_sub_1, var.private_sub_1, var.public_sub_2, var.private_sub_2]
     #endpoint_private_access = true
    }
   #depends_on = [ aws_iam_policy_attachment.eks_policy_attach, aws_iam_role.eks_acces_role, aws_vpc.dev_digital_back_office_vpc, aws_iam_role.node_group_acces_role ]
@@ -104,7 +104,7 @@ resource "aws_eks_node_group" "eks-ng" {
   node_role_arn = aws_iam_role.node_group_acces_role.arn
   subnet_ids = [var.public_sub_1, var.public_sub_2]
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     min_size = 1
     max_size = 2
   }

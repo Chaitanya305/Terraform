@@ -1,0 +1,15 @@
+${
+    jsonencode({
+        Version = "2012-10-17"
+        Statement = [
+        {
+            Action = "sts:AssumeRole"
+            Effect = "${effect}"
+            Sid    = "${Sid}"
+            Principal = {
+            Service = "${Service}"
+            }
+        },
+        ]
+    })
+}
